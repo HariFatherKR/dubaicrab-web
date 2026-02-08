@@ -65,7 +65,7 @@ export default function Home() {
   return (
     <main className="min-h-screen">
       {/* Hero */}
-      <section className="px-4 py-24 md:py-32">
+      <section className="px-4 py-16 md:py-32">
         <div className="max-w-3xl mx-auto text-center">
           <motion.div
             initial="hidden"
@@ -73,14 +73,14 @@ export default function Home() {
             variants={fadeIn}
             transition={{ duration: 0.4 }}
           >
-            <p className="text-[var(--primary-light)] font-medium mb-4">
+            <p className="text-[var(--primary-light)] font-medium mb-3 text-sm md:text-base">
               ChatGPT 막힌 회사에서도
             </p>
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-[var(--text-primary)]">
+            <h1 className="text-3xl md:text-5xl font-bold mb-4 text-[var(--text-primary)]">
               AI 쓰는 방법
             </h1>
-            <p className="text-lg text-[var(--text-secondary)] mb-8 max-w-xl mx-auto">
-              Dubai Crab은 100% 로컬에서 실행되는 AI 비서입니다.<br />
+            <p className="text-base md:text-lg text-[var(--text-secondary)] mb-8 max-w-xl mx-auto px-4">
+              Dubai Crab은 100% 로컬에서 실행되는 AI 비서입니다.
               HWP 요약, 이메일 작성, 엑셀 분석까지.
             </p>
           </motion.div>
@@ -93,14 +93,14 @@ export default function Home() {
             className="max-w-md mx-auto mb-8"
           >
             {!submitted ? (
-              <form onSubmit={handleSubmit(onSubmit)} className="flex gap-2">
+              <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col sm:flex-row gap-3">
                 <input
                   type="email"
                   placeholder="이메일 주소"
                   {...register('email', { required: true })}
-                  className="input flex-1 px-4 py-3"
+                  className="input flex-1 px-4 py-3 text-center sm:text-left"
                 />
-                <button type="submit" className="btn-primary px-6 py-3">
+                <button type="submit" className="btn-primary px-6 py-3 w-full sm:w-auto">
                   알림 받기
                 </button>
               </form>
@@ -164,7 +164,7 @@ export default function Home() {
           <h2 className="text-2xl font-bold text-center mb-12">
             주요 기능
           </h2>
-          <div className="grid md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
             {features.map((feature, index) => (
               <motion.div
                 key={feature.title}
@@ -172,11 +172,11 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05 }}
-                className="card p-5"
+                className="card p-4 md:p-5"
               >
-                <div className="text-2xl mb-3">{feature.icon}</div>
-                <h3 className="font-semibold mb-1">{feature.title}</h3>
-                <p className="text-sm text-[var(--text-secondary)]">{feature.desc}</p>
+                <div className="text-xl md:text-2xl mb-2 md:mb-3">{feature.icon}</div>
+                <h3 className="font-semibold text-sm md:text-base mb-1">{feature.title}</h3>
+                <p className="text-xs md:text-sm text-[var(--text-secondary)]">{feature.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -189,7 +189,7 @@ export default function Home() {
           <h2 className="text-2xl font-bold text-center mb-12">
             시작하기
           </h2>
-          <div className="flex justify-between items-start">
+          <div className="flex flex-col sm:flex-row justify-between items-center sm:items-start gap-8 sm:gap-4">
             {steps.map((step, index) => (
               <motion.div
                 key={step.num}
@@ -232,14 +232,14 @@ export default function Home() {
             출시되면 가장 먼저 알려드립니다
           </p>
           {!submitted ? (
-            <form onSubmit={handleSubmit(onSubmit)} className="flex gap-2">
+            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col sm:flex-row gap-3">
               <input
                 type="email"
                 placeholder="이메일 주소"
                 {...register('email', { required: true })}
-                className="input flex-1 px-4 py-3"
+                className="input flex-1 px-4 py-3 text-center sm:text-left"
               />
-              <button type="submit" className="btn-primary px-6 py-3">
+              <button type="submit" className="btn-primary px-6 py-3 w-full sm:w-auto">
                 신청
               </button>
             </form>
