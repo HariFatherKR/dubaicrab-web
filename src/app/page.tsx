@@ -9,7 +9,7 @@ interface EmailForm {
   email: string;
 }
 
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/a/macros/snovium.com/s/AKfycbz3NZeMu1jH1HVlbNNEkgoJSSt9VI6mfABCixxxA4bTW6CTa23CEdhfJn5IuziHffAr3w/exec';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz3NZeMu1jH1HVlbNNEkgoJSSt9VI6mfABCixxxA4bTW6CTa23CEdhfJn5IuziHffAr3w/exec';
 
 const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
