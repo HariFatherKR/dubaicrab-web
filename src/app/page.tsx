@@ -1,28 +1,29 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useForm } from 'react-hook-form';
-import { useState } from 'react';
+import { useState, FormEvent } from 'react';
 import Image from 'next/image';
-
-interface EmailForm {
-  email: string;
-}
 
 const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz3NZeMu1jH1HVlbNNEkgoJSSt9VI6mfABCixxxA4bTW6CTa23CEdhfJn5IuziHffAr3w/exec';
 
 const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
 export default function Home() {
+  const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const { register, handleSubmit, formState: { errors } } = useForm<EmailForm>();
 
-  const onSubmit = async (data: EmailForm) => {
+  const handleFormSubmit = async (e: FormEvent) => {
+    e.preventDefault();
     setError(null);
     
-    if (!isValidEmail(data.email)) {
+    if (!email.trim()) {
+      setError('이메일을 입력해주세요');
+      return;
+    }
+    
+    if (!isValidEmail(email)) {
       setError('올바른 이메일 주소를 입력해주세요');
       return;
     }
@@ -33,7 +34,7 @@ export default function Home() {
         method: 'POST',
         mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: data.email }),
+        body: JSON.stringify({ email }),
       });
       setSubmitted(true);
     } catch (err) {
@@ -118,11 +119,12 @@ export default function Home() {
             className="max-w-md mx-auto mb-8"
           >
             {!submitted ? (
-              <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col sm:flex-row gap-3">
+              <form onSubmit={handleFormSubmit} className="flex flex-col sm:flex-row gap-3">
                 <input
                   type="email"
                   placeholder="이메일 주소"
-                  {...register('email', { required: true })}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   className="input flex-1 px-4 py-3 text-center sm:text-left"
                   disabled={isLoading}
                 />
@@ -139,8 +141,8 @@ export default function Home() {
                 <p className="text-[var(--primary-light)]">✓ 등록 완료! 출시되면 알려드릴게요 🦀</p>
               </div>
             )}
-            {(errors.email || error) && (
-              <p className="text-red-500 mt-2 text-sm">{error || '이메일을 입력해주세요'}</p>
+            {error && (
+              <p className="text-red-500 mt-2 text-sm">{error}</p>
             )}
           </motion.div>
 
@@ -270,19 +272,25 @@ export default function Home() {
             출시되면 가장 먼저 알려드립니다
           </p>
           {!submitted ? (
-            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col sm:flex-row gap-3">
+            <form onSubmit={handleFormSubmit} className="flex flex-col sm:flex-row gap-3">
               <input
                 type="email"
                 placeholder="이메일 주소"
-                {...register('email', { required: true })}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="input flex-1 px-4 py-3 text-center sm:text-left"
+                disabled={isLoading}
               />
-              <button type="submit" className="btn-primary px-6 py-3 w-full sm:w-auto">
-                신청
+              <button 
+                type="submit" 
+                className="btn-primary px-6 py-3 w-full sm:w-auto disabled:opacity-50"
+                disabled={isLoading}
+              >
+                {isLoading ? '등록 중...' : '신청'}
               </button>
             </form>
           ) : (
-            <p className="text-[var(--primary-light)]">✓ 등록 완료</p>
+            <p className="text-[var(--primary-light)]">✓ 등록 완료! 출시되면 알려드릴게요 🦀</p>
           )}
         </div>
       </section>
