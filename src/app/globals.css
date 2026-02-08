@@ -1,37 +1,22 @@
 @import "tailwindcss";
 
 :root {
-  /* Dubai Crab - Soft UI Evolution + Glassmorphism (Dark Mode) */
-  /* WCAG AA+ compliant colors */
+  /* Clean, minimal color palette */
+  --primary: #059669;
+  --primary-light: #10B981;
+  --accent: #D97706;
+  --accent-light: #F59E0B;
   
-  /* Primary - Pistachio/Emerald Green */
-  --primary-50: #ECFDF5;
-  --primary-100: #D1FAE5;
-  --primary-200: #A7F3D0;
-  --primary-500: #10B981;
-  --primary-600: #059669;
-  --primary-700: #047857;
+  --bg-dark: #111111;
+  --bg-card: #1a1a1a;
+  --bg-card-hover: #222222;
   
-  /* Secondary - Chocolate Brown (darker for accessibility) */
-  --secondary-50: #FAFAF9;
-  --secondary-100: #F5F5F4;
-  --secondary-700: #44403C;
-  --secondary-800: #292524;
-  --secondary-900: #1C1917;
+  --text-primary: #f5f5f5;
+  --text-secondary: #a3a3a3;
+  --text-muted: #737373;
   
-  /* Accent - Golden/Amber (더 생생한 골드) */
-  --accent-400: #FBBF24;
-  --accent-500: #F59E0B;
-  --accent-600: #D97706;
-  
-  /* Text */
-  --text-primary: #FAFAF9;
-  --text-secondary: #A8A29E;
-  --text-muted: #78716C;
-  
-  /* Status */
-  --success: #22C55E;
-  --error: #EF4444;
+  --border: #262626;
+  --border-hover: #404040;
 }
 
 * {
@@ -43,8 +28,8 @@ html {
 }
 
 body {
-  font-family: 'Pretendard', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  background: linear-gradient(135deg, var(--secondary-900) 0%, var(--secondary-800) 50%, var(--secondary-900) 100%);
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  background: var(--bg-dark);
   color: var(--text-primary);
   min-height: 100vh;
 }
@@ -55,94 +40,76 @@ body {
   src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 }
 
-/* 글래스모피즘 */
-.glass {
-  background: rgba(16, 185, 129, 0.1);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(16, 185, 129, 0.2);
-  border-radius: 12px;
+/* Simple card - no glass effect */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  transition: all 0.2s ease;
 }
 
-.glass-dark {
-  background: rgba(28, 25, 23, 0.8);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(68, 64, 60, 0.3);
-  border-radius: 16px;
+.card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-hover);
 }
 
-/* CTA 버튼 */
-.btn-accent {
-  background: linear-gradient(135deg, var(--accent-600), var(--accent-500));
-  color: var(--secondary-900);
-  cursor: pointer;
-  transition: all 200ms ease;
-}
-
-.btn-accent:hover {
-  background: linear-gradient(135deg, var(--accent-500), var(--accent-400));
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
-}
-
-/* Primary 버튼 */
+/* Clean button */
 .btn-primary {
-  background: linear-gradient(135deg, var(--primary-600), var(--primary-500));
-  color: white;
+  background: var(--accent);
+  color: #111;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  transition: all 0.15s ease;
   cursor: pointer;
-  transition: all 200ms ease;
 }
 
 .btn-primary:hover {
-  background: linear-gradient(135deg, var(--primary-700), var(--primary-600));
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+  background: var(--accent-light);
 }
 
-/* 스크롤바 */
+/* Simple input */
+.input {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-primary);
+  transition: border-color 0.15s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.input::placeholder {
+  color: var(--text-muted);
+}
+
+/* Scrollbar - minimal */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(28, 25, 23, 0.3);
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(16, 185, 129, 0.4);
-  border-radius: 4px;
-  transition: background 200ms ease;
+  background: #333;
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(16, 185, 129, 0.6);
+  background: #444;
 }
 
-/* Selection */
-::selection {
-  background: rgba(16, 185, 129, 0.3);
-  color: var(--text-primary);
-}
-
-/* Focus styles */
-:focus-visible {
-  outline: 2px solid var(--primary-500);
-  outline-offset: 2px;
-}
-
-/* Links & buttons */
-a, button {
-  transition: all 200ms ease;
-  cursor: pointer;
-}
-
-/* Card hover */
-.card-hover {
-  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
-}
-
-.card-hover:hover {
-  transform: translateY(-2px);
-  border-color: var(--accent-500);
+/* Badge */
+.badge {
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  background: rgba(5, 150, 105, 0.15);
+  color: var(--primary-light);
 }
