@@ -119,17 +119,25 @@ export default function Home() {
             animate="visible"
             variants={fadeIn}
             transition={{ duration: 0.4, delay: 0.2 }}
-            className="flex justify-center gap-4 text-sm text-[var(--text-muted)]"
+            className="flex flex-col items-center gap-4"
           >
             <a
-              href="https://github.com/HariFatherKR/DubaiCrab"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-[var(--text-secondary)] transition-colors"
+              href="https://github.com/HariFatherKR/DubaiCrab/releases/download/v0.1.0/Dubai.Crab_0.1.0_aarch64.dmg"
+              className="btn-primary px-8 py-3 text-base font-semibold inline-flex items-center gap-2"
             >
-              GitHub →
+              <span>🍎</span> Mac OS Download
             </a>
-            <span>무료 & 오픈소스</span>
+            <div className="flex justify-center gap-4 text-sm text-[var(--text-muted)]">
+              <a
+                href="https://github.com/HariFatherKR/DubaiCrab"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[var(--text-secondary)] transition-colors"
+              >
+                GitHub →
+              </a>
+              <span>무료 & 오픈소스</span>
+            </div>
           </motion.div>
         </div>
       </section>
