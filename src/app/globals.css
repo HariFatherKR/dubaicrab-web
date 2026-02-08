@@ -1,26 +1,88 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Dubai Cookie Theme */
+  --pistachio-100: #e8f5e9;
+  --pistachio-500: #4a7c59;
+  --pistachio-600: #3d6b4f;
+  --pistachio-700: #2d5a3f;
+  
+  --chocolate-100: #d7ccc8;
+  --chocolate-500: #5D4037;
+  --chocolate-600: #4E342E;
+  --chocolate-700: #3E2723;
+  
+  --golden-400: #D4A574;
+  --golden-500: #C49A6C;
+  --golden-600: #B8860B;
+  
+  --cream: #FFF8E1;
+  --cream-dark: #BCAAA4;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  background: linear-gradient(135deg, #3E2723 0%, #4E342E 50%, #5D4037 100%);
+  color: var(--cream);
+  min-height: 100vh;
+}
+
+/* Pretendard 폰트 */
+@font-face {
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+}
+
+/* 글래스모피즘 */
+.glass {
+  background: rgba(74, 124, 89, 0.15);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(74, 124, 89, 0.25);
+}
+
+.glass-dark {
+  background: rgba(62, 39, 35, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(93, 64, 55, 0.3);
+}
+
+/* 버튼 그라데이션 */
+.btn-golden {
+  background: linear-gradient(135deg, #D4A574, #B8860B);
+  color: #3E2723;
+  transition: all 0.3s ease;
+}
+
+.btn-golden:hover {
+  background: linear-gradient(135deg, #B8860B, #D4A574);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(212, 165, 116, 0.4);
+}
+
+/* 스크롤바 */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(62, 39, 35, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(74, 124, 89, 0.5);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(74, 124, 89, 0.7);
 }
