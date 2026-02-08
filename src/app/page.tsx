@@ -9,13 +9,38 @@ interface EmailForm {
   email: string;
 }
 
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/a/macros/snovium.com/s/AKfycbz3NZeMu1jH1HVlbNNEkgoJSSt9VI6mfABCixxxA4bTW6CTa23CEdhfJn5IuziHffAr3w/exec';
+
+const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
 export default function Home() {
   const [submitted, setSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const { register, handleSubmit, formState: { errors } } = useForm<EmailForm>();
 
   const onSubmit = async (data: EmailForm) => {
-    console.log('Email submitted:', data.email);
-    setSubmitted(true);
+    setError(null);
+    
+    if (!isValidEmail(data.email)) {
+      setError('올바른 이메일 주소를 입력해주세요');
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: data.email }),
+      });
+      setSubmitted(true);
+    } catch (err) {
+      setError('등록 중 오류가 발생했습니다. 다시 시도해주세요.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const fadeIn = {
@@ -99,18 +124,23 @@ export default function Home() {
                   placeholder="이메일 주소"
                   {...register('email', { required: true })}
                   className="input flex-1 px-4 py-3 text-center sm:text-left"
+                  disabled={isLoading}
                 />
-                <button type="submit" className="btn-primary px-6 py-3 w-full sm:w-auto">
-                  알림 받기
+                <button 
+                  type="submit" 
+                  className="btn-primary px-6 py-3 w-full sm:w-auto disabled:opacity-50"
+                  disabled={isLoading}
+                >
+                  {isLoading ? '등록 중...' : '알림 받기'}
                 </button>
               </form>
             ) : (
               <div className="card p-4 text-center">
-                <p className="text-[var(--primary-light)]">✓ 등록 완료</p>
+                <p className="text-[var(--primary-light)]">✓ 등록 완료! 출시되면 알려드릴게요 🦀</p>
               </div>
             )}
-            {errors.email && (
-              <p className="text-red-500 mt-2 text-sm">이메일을 입력해주세요</p>
+            {(errors.email || error) && (
+              <p className="text-red-500 mt-2 text-sm">{error || '이메일을 입력해주세요'}</p>
             )}
           </motion.div>
 
