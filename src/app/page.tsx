@@ -115,7 +115,7 @@ export default function Home() {
 						className="flex flex-col items-center gap-4"
 					>
 						<a
-							href="https://github.com/HariFatherKR/DubaiCrab/releases/download/v0.2.0/DubaiCrab-v0.2.0-macOS-arm64.zip"
+							href="https://github.com/HariFatherKR/DubaiCrab/releases/download/v0.2.0/DubaiCrab-v0.2.0-macOS-arm64.pkg"
 							className="btn-primary px-8 py-3 text-base font-semibold inline-flex items-center gap-2"
 						>
 							<span>🍎</span> Mac 다운로드 (v0.2.0)
