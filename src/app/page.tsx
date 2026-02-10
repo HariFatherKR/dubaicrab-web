@@ -115,10 +115,10 @@ export default function Home() {
 						className="flex flex-col items-center gap-4"
 					>
 						<a
-							href="https://github.com/HariFatherKR/DubaiCrab/releases/download/v0.1.0/Dubai.Crab_0.1.0_aarch64.dmg"
+							href="https://github.com/HariFatherKR/DubaiCrab/releases/download/v0.2.0/DubaiCrab-v0.2.0-macOS-arm64.zip"
 							className="btn-primary px-8 py-3 text-base font-semibold inline-flex items-center gap-2"
 						>
-							<span>🍎</span> Mac OS Download
+							<span>🍎</span> Mac 다운로드 (v0.2.0)
 						</a>
 						<div className="flex justify-center gap-4 text-sm text-[var(--text-muted)]">
 							<a
